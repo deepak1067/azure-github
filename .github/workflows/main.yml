@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/deepak1067/myapp/myimage1
+  IMAGE_NAME: ghcr.io/deepak1067/myapp/myimage
   AKS_CLUSTER: first-cluster
   AKS_NAMESPACE: default
 
