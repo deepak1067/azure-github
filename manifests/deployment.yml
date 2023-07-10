@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: springboot-app4
+  name: springboot-app5
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: springboot-app4
+      app: springboot-app5
   template:
     metadata:
       labels:
-        app: springboot-app4
+        app: springboot-app5
     spec:
       containers:
-        - name: springboot-app4
-          image: ghcr.io/depak1067/myapp:${{ github.sha }}
+        - name: springboot-app5
+          image: ghcr.io/depak1067/myapp/myimage:${{ github.sha }}
           ports:
             - containerPort: 8080
