@@ -39,8 +39,8 @@ jobs:
         uses: azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          cluster-name: demo
-          resource-group: azure-demo
+          cluster-name: first-cluster
+          resource-group: first-group
 
       - name: List Manifests Directory
         run: ls manifests
