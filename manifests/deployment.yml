@@ -15,5 +15,8 @@ spec:
       containers:
         - name: springboot-app1
           image: ghcr.io/deepak1067/myapp:${{ github.sha }}
+
           ports:
             - containerPort: 8080
+      imagePullSecrets:
+        - name: ghcr-secret

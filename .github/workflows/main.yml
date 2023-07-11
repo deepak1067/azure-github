@@ -28,13 +28,17 @@ jobs:
           sudo sh get-docker.sh
 
       - name: Log in to GitHub Artifact Registry
-        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login "ghcr.io" -u deepak1067 --password-stdin
+        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login ghcr.io -u deepak1067 --password-stdin
 
 
       - name: Build and push Docker image
         run: |
           docker build -t "${{ env.IMAGE_NAME }}:${{ github.sha }}" .
           docker push "${{ env.IMAGE_NAME }}:${{ github.sha }}"
+
+      - name: Create image pull secret
+        run: |
+          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}" --namespace=${{ env.AKS_NAMESPACE }}
 
       - name: Configure Kubernetes environment
         uses: azure/aks-set-context@v1
