@@ -48,5 +48,6 @@ jobs:
 
       - name: Apply Kubernetes manifest
         run: |
+          sed -i "s|image:.*|image: ${IMAGE_NAME}:${{ github.sha }}|g" manifests/deployment.yml
           kubectl apply -f manifests/deployment.yml --namespace ${{ env.AKS_NAMESPACE }}
           kubectl apply -f manifests/service.yml --namespace ${{ env.AKS_NAMESPACE }}
