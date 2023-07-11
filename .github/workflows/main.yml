@@ -36,9 +36,7 @@ jobs:
           docker build -t "${{ env.IMAGE_NAME }}:${{ github.sha }}" .
           docker push "${{ env.IMAGE_NAME }}:${{ github.sha }}"
 
-      - name: Create image pull secret
-        run: |
-          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}" --namespace=${{ env.AKS_NAMESPACE }}
+
 
       - name: Configure Kubernetes environment
         uses: azure/aks-set-context@v1
@@ -46,6 +44,10 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           cluster-name: first-cluster
           resource-group: first-group
+
+      - name: Create image pull secret
+        run: |
+          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}" --namespace=${{ env.AKS_NAMESPACE }}
 
       - name: List Manifests Directory
         run: ls manifests
