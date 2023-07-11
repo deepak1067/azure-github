@@ -28,7 +28,9 @@ jobs:
           sudo sh get-docker.sh
 
       - name: Log in to GitHub Artifact Registry
-        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login "ghcr.io/deepak1067/myapp" -u deepak1067 --password-stdin
+#        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login "ghcr.io/deepak1067/myapp" -u deepak1067 --password-stdin
+        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login ghcr.io -u deepak1067 --password-stdin
+
 
       - name: Build and push Docker image
         run: |
