@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/deepak1067/myapp/myimage
+  IMAGE_NAME: ghcr.io/deepak1067/myapp
   AKS_CLUSTER: first-cluster
   AKS_NAMESPACE: default
 
@@ -28,8 +28,8 @@ jobs:
           sudo sh get-docker.sh
 
       - name: Log in to GitHub Artifact Registry
-#        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login "ghcr.io/deepak1067/myapp" -u deepak1067 --password-stdin
-        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login ghcr.io -u deepak1067 --password-stdin
+        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login "ghcr.io/deepak1067/myapp" -u deepak1067 --password-stdin
+#        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login ghcr.io -u deepak1067 --password-stdin
 
 
       - name: Build and push Docker image
